@@ -16,5 +16,5 @@ public class NewsStore {
     public static void setNewsModels(List<NewsModel> newsModels) {
         NewsStore.newsModels = newsModels;
     }
-    
+
 }
