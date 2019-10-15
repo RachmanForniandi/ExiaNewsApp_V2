@@ -2,18 +2,32 @@ package com.example.exianewsappv2;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 
+import com.example.exianewsappv2.adapter.NewsAdapter;
 import com.example.exianewsappv2.model.NewsModel;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class MainActivity extends AppCompatActivity {
+
+    @BindView(R.id.list_of_news)
+    RecyclerView listOfNews;
+
+    NewsAdapter newsAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        ButterKnife.bind(this);
+
 
 
         List<NewsModel> newsModels = new ArrayList<>();
@@ -30,5 +44,9 @@ public class MainActivity extends AppCompatActivity {
                 "https://sport.detik.com/sepakbola/liga-indonesia/d-4744624/timnas-indonesia-tak-boleh-andalkan-keberuntungan-lawan-vietnam"));
 
         NewsStore.setNewsModels(newsModels);
+
+        newsAdapter = new NewsAdapter(NewsStore.getNewsModels());
+        listOfNews.setLayoutManager(new LinearLayoutManager(this));
+        listOfNews.setAdapter(newsAdapter);
     }
 }
