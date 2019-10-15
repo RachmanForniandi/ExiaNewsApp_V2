@@ -43,6 +43,27 @@ public class MainActivity extends AppCompatActivity {
                 "Minggu, 13 Okt 2019 23:22 WIB",
                 "https://sport.detik.com/sepakbola/liga-indonesia/d-4744624/timnas-indonesia-tak-boleh-andalkan-keberuntungan-lawan-vietnam"));
 
+        newsModels.add(new NewsModel("Indonesia Vs Vietnam: Skuat Garuda Dihantam 1-3",
+                "Gianyar - Indonesia kembali menelan kekalahan di Kualifikasi Piala Dunia 2022. Menjamu Vietnam, Indonesia dipaksa menyerah dengan skor akhir 1-3.",
+                "https://akcdn.detik.net.id/community/media/visual/2019/10/15/e853c0dd-6897-4db0-b35b-519565a86f44_169.jpeg?w=700&q=80",
+                "Selasa, 15 Okt 2019 20:24 WIB",
+                "https://sport.detik.com/sepakbola/liga-indonesia/d-4747224/indonesia-vs-vietnam-skuat-garuda-dihantam-1-3"));
+
+
+        newsModels.add(new NewsModel("Indonesia Digasak Vietnam, Irfan Bachdim: Pemain Harus Bercermin",
+                "Jakarta - Irfan Bachdim menyebut kekalahan Indonesia atas Vietnam terjadi karena pemain kurang konsentrasi. Skuat Garuda disebutnya harus introspeksi.",
+                "https://akcdn.detik.net.id/community/media/visual/2019/10/15/45b0ea64-2e28-43b5-a88c-49e962420888_169.jpeg?w=700&q=80",
+                "Selasa, 15 Okt 2019 21:46 WIB",
+                "https://sport.detik.com/sepakbola/liga-indonesia/d-4747304/indonesia-digasak-vietnam-irfan-bachdim-pemain-harus-bercermin"));
+
+        newsModels.add(new NewsModel("Dicari! Kapten untuk Timnas Indonesia",
+                "Gianyar - Timnas Indonesia kalah lagi di Kualifikasi Piala Dunia 2022, kali ini dari Vietnam dengan skor 1-3. Masalah kepemimpinan disorot, siapa mampu jadi kapten?",
+                "https://akcdn.detik.net.id/community/media/visual/2019/10/15/eb68893e-d137-4c98-9fb1-82374ec44950_169.jpeg?w=700&q=80",
+                "Selasa, 15 Okt 2019 22:07 WIB",
+                "https://sport.detik.com/sepakbola/liga-indonesia/d-4747321/dicari-kapten-untuk-timnas-indonesia"));
+
+
+
         NewsStore.setNewsModels(newsModels);
 
         newsAdapter = new NewsAdapter(NewsStore.getNewsModels());
