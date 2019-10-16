@@ -9,9 +9,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.example.exianewsappv2.helpers.FormatDateUtils;
 import com.example.exianewsappv2.NewsDetailActivity;
 import com.example.exianewsappv2.R;
-import com.example.exianewsappv2.model.NewsModel;
+import com.example.exianewsappv2.model.ArticlesItem;
 
 import java.util.List;
 
@@ -20,10 +21,10 @@ import butterknife.ButterKnife;
 
 public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder> {
 
-    private List<NewsModel> newsModels;
+    private List<ArticlesItem> articlesItems;
 
-    public NewsAdapter(List<NewsModel> newsModels) {
-        this.newsModels = newsModels;
+    public NewsAdapter(List<ArticlesItem> articlesItems) {
+        this.articlesItems = articlesItems;
     }
     @NonNull
     @Override
@@ -34,13 +35,13 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull NewsAdapter.NewsViewHolder holder, final int position) {
-        final NewsModel newsModel = newsModels.get(position);
+        final ArticlesItem newsModel = articlesItems.get(position);
         holder.txtNewsTitle.setText(newsModel.getTitle());
-        holder.txtNewsTime.setText(newsModel.getTime());
-        holder.txtNewsContent.setText(newsModel.getDetails());
+        holder.txtNewsTime.setText(FormatDateUtils.formNewsApiDate(newsModel.getPublishedAt()));
+        holder.txtNewsContent.setText(newsModel.getDescription());
 
         Glide.with(holder.imgNews.getContext())
-                .load(newsModel.getImageUrl())
+                .load(newsModel.getUrlToImage())
                 .centerCrop()
                 .into(holder.imgNews);
 
@@ -54,7 +55,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
 
     @Override
     public int getItemCount() {
-        return newsModels.size();
+        return articlesItems.size();
     }
 
     public class NewsViewHolder extends RecyclerView.ViewHolder {

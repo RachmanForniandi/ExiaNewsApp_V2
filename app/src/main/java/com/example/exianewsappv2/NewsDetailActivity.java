@@ -66,7 +66,7 @@ public class NewsDetailActivity extends AppCompatActivity {
             }
         });
 
-        newsDetailWebView.loadUrl(NewsStore.getNewsModels().get(index).getUrlToArticle());
+        newsDetailWebView.loadUrl(NewsStore.getNewsModels().get(index).getUrl());
         getSupportActionBar().setTitle(NewsStore.getNewsModels().get(index).getTitle());
     }
 

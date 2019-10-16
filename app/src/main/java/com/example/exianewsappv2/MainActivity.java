@@ -4,15 +4,24 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.widget.Toast;
 
 import com.example.exianewsappv2.adapter.NewsAdapter;
+import com.example.exianewsappv2.helpers.LoadingIndicator;
+import com.example.exianewsappv2.model.ArticlesItem;
 import com.example.exianewsappv2.model.NewsModel;
+import com.example.exianewsappv2.model.ResponseArticles;
+import com.example.exianewsappv2.networkUtils.NetworkConfig;
+import com.example.exianewsappv2.networkUtils.NewsService;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -20,6 +29,8 @@ public class MainActivity extends AppCompatActivity {
     RecyclerView listOfNews;
 
     NewsAdapter newsAdapter;
+    List<ArticlesItem> articles;
+    LoadingIndicator loading;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,8 +38,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         ButterKnife.bind(this);
+        articles = new ArrayList<>();
+        loading = new LoadingIndicator(this);
+        listOfNews.setLayoutManager(new LinearLayoutManager(this));
 
-        List<NewsModel> newsModels = new ArrayList<>();
+        /*List<NewsModel> newsModels = new ArrayList<>();
         newsModels.add(new NewsModel("Sven-Goran Eriksson Pernah Diancam Mau Dibunuh Alex Ferguson",
                 "Jakarta - Sven-Goran Eriksson mengungkapkan bahwa dirinya sempat ingin dibunuh oleh Sir Alex Ferguson. Apa permasalahannya?",
                 "https://akcdn.detik.net.id/community/media/visual/2017/06/15/9d46ff4f-e846-4d77-a340-28f3688eee76_169.jpg?w=700&q=80",
@@ -62,10 +76,39 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        NewsStore.setNewsModels(newsModels);
+        NewsStore.setNewsModels(newsModels);*/
 
-        newsAdapter = new NewsAdapter(NewsStore.getNewsModels());
+        /*newsAdapter = new NewsAdapter(NewsStore.getNewsModels());
         listOfNews.setLayoutManager(new LinearLayoutManager(this));
-        listOfNews.setAdapter(newsAdapter);
+        listOfNews.setAdapter(newsAdapter);*/
+
+        loadDataArticles();
+
+    }
+
+    private void loadDataArticles() {
+        loading.showLoadingIndicator();
+        Call<ResponseArticles>call = NetworkConfig.service.getArticles("reuters","3aa66a534dbe4bdea05f7a067f7a5fec");
+        call.enqueue(new Callback<ResponseArticles>() {
+            @Override
+            public void onResponse(Call<ResponseArticles> call, Response<ResponseArticles> response) {
+                loading.dismissLoading();
+                if (response.isSuccessful()){
+                    ResponseArticles responseArticles = response.body();
+                    NewsStore.setNewsModels(responseArticles.getArticles());
+
+                    newsAdapter = new NewsAdapter(responseArticles.getArticles());
+                    listOfNews.setAdapter(newsAdapter);
+                }else {
+                    Toast.makeText(MainActivity.this, "Sorry,something wrong with connection", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseArticles> call, Throwable t) {
+                loading.dismissLoading();
+                t.getMessage();
+            }
+        });
     }
 }
