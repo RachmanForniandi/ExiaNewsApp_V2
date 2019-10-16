@@ -28,8 +28,6 @@ public class MainActivity extends AppCompatActivity {
 
         ButterKnife.bind(this);
 
-
-
         List<NewsModel> newsModels = new ArrayList<>();
         newsModels.add(new NewsModel("Sven-Goran Eriksson Pernah Diancam Mau Dibunuh Alex Ferguson",
                 "Jakarta - Sven-Goran Eriksson mengungkapkan bahwa dirinya sempat ingin dibunuh oleh Sir Alex Ferguson. Apa permasalahannya?",

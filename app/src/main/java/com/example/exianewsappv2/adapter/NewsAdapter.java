@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.example.exianewsappv2.NewsDetailActivity;
 import com.example.exianewsappv2.R;
 import com.example.exianewsappv2.model.NewsModel;
 
@@ -32,7 +33,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
     }
 
     @Override
-    public void onBindViewHolder(@NonNull NewsAdapter.NewsViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull NewsAdapter.NewsViewHolder holder, final int position) {
         final NewsModel newsModel = newsModels.get(position);
         holder.txtNewsTitle.setText(newsModel.getTitle());
         holder.txtNewsTime.setText(newsModel.getTime());
@@ -42,6 +43,13 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
                 .load(newsModel.getImageUrl())
                 .centerCrop()
                 .into(holder.imgNews);
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                NewsDetailActivity.launch(view.getContext(),position);
+            }
+        });
     }
 
     @Override
