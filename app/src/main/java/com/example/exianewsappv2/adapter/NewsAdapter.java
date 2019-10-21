@@ -2,6 +2,8 @@ package com.example.exianewsappv2.adapter;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +15,7 @@ import com.example.exianewsappv2.helpers.FormatDateUtils;
 import com.example.exianewsappv2.NewsDetailActivity;
 import com.example.exianewsappv2.R;
 import com.example.exianewsappv2.model.ArticlesItem;
+import com.google.firebase.analytics.FirebaseAnalytics;
 
 import java.util.List;
 
@@ -48,6 +51,10 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                FirebaseAnalytics analytics = FirebaseAnalytics.getInstance(view.getContext());
+                Bundle bundle = new Bundle();
+                bundle.putString("index",String.valueOf(position));
+                analytics.logEvent("newsClicked",bundle);
                 NewsDetailActivity.launch(view.getContext(),position);
             }
         });

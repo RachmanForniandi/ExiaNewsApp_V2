@@ -1,5 +1,7 @@
 package com.example.exianewsappv2.helpers;
 
+import com.google.firebase.crash.FirebaseCrash;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -20,6 +22,7 @@ public class FormatDateUtils {
             return outputFormat.format(date);
         }catch (ParseException e){
             e.printStackTrace();
+            FirebaseCrash.report(e);
         }
         return inputDate;
     }
