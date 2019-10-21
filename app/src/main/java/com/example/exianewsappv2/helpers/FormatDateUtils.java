@@ -10,7 +10,8 @@ import java.util.regex.PatternSyntaxException;
 public class FormatDateUtils {
 
     public static String formNewsApiDate(String inputDate){
-
+        /*if (inputDate==null)
+            return null;*/
         try {
             String inputDateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'";
             String outputDateFormat ="EEE, d MMM yyyy KK:mm";
