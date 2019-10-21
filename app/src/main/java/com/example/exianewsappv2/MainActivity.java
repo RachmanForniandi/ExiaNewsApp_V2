@@ -1,9 +1,16 @@
 package com.example.exianewsappv2;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.view.View;
 import android.widget.Toast;
 
 import com.example.exianewsappv2.adapter.NewsAdapter;
@@ -11,6 +18,7 @@ import com.example.exianewsappv2.helpers.LoadingIndicator;
 import com.example.exianewsappv2.model.ArticlesItem;
 import com.example.exianewsappv2.model.ResponseArticles;
 import com.example.exianewsappv2.networkUtils.NetworkConfig;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +33,9 @@ public class MainActivity extends AppCompatActivity {
 
     @BindView(R.id.list_of_news)
     RecyclerView listOfNews;
+
+    @BindView(R.id.activity_main_layout)
+    CoordinatorLayout mainLayout;
 
     NewsAdapter newsAdapter;
     List<ArticlesItem> articles;
@@ -91,6 +102,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<ResponseArticles> call, Response<ResponseArticles> response) {
                 loading.dismissLoading();
+                showNewsApiSnack();
                 if (response.isSuccessful()){
                     ResponseArticles responseArticles = response.body();
                     NewsStore.setNewsModels(responseArticles.getArticles());
@@ -108,5 +120,19 @@ public class MainActivity extends AppCompatActivity {
                 t.getMessage();
             }
         });
+    }
+
+    private void showNewsApiSnack(){
+        Snackbar.make(mainLayout,"Powered by Newsapi.org",Snackbar.LENGTH_LONG)
+                .setAction("Visit", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        loadToTheSourceApi();
+                    }
+                }).show();
+    }
+
+    private void loadToTheSourceApi(){
+        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://newsapi.org")));
     }
 }
