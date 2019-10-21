@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "507753632006",
+    "firebase_url": "https://exianewsappv2.firebaseio.com",
+    "project_id": "exianewsappv2",
+    "storage_bucket": "exianewsappv2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:507753632006:android:c65d18cd8404a4d5388e87",
+        "android_client_info": {
+          "package_name": "com.example.exianewsappv2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "507753632006-vjsgg0akuceg7nrcs3v8uoi5f1jlnu5k.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.exianewsappv2",
+            "certificate_hash": "571e12a6cb6002217b931868f9f4cbf5d9bad4ef"
+          }
+        },
+        {
+          "client_id": "507753632006-1biidinjo37o2ejot5ktqnmf152su6is.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDTRj9obrTJ-hCYyHAU8WwZ0Ds8bcDsu0w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "507753632006-1biidinjo37o2ejot5ktqnmf152su6is.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

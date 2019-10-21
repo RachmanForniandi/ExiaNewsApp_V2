@@ -1,18 +1,16 @@
 package com.example.exianewsappv2;
 
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.widget.Toast;
 
 import com.example.exianewsappv2.adapter.NewsAdapter;
 import com.example.exianewsappv2.helpers.LoadingIndicator;
 import com.example.exianewsappv2.model.ArticlesItem;
-import com.example.exianewsappv2.model.NewsModel;
 import com.example.exianewsappv2.model.ResponseArticles;
 import com.example.exianewsappv2.networkUtils.NetworkConfig;
-import com.example.exianewsappv2.networkUtils.NewsService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -88,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void loadDataArticles() {
         loading.showLoadingIndicator();
-        Call<ResponseArticles>call = NetworkConfig.service.getArticles("reuters","3aa66a534dbe4bdea05f7a067f7a5fec");
+        Call<ResponseArticles>call = NetworkConfig.service.getArticles("3aa66a534dbe4bdea05f7a067f7a5fec","id");
         call.enqueue(new Callback<ResponseArticles>() {
             @Override
             public void onResponse(Call<ResponseArticles> call, Response<ResponseArticles> response) {

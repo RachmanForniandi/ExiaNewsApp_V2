@@ -9,12 +9,14 @@ public class NetworkConfig {
 
     public static HttpLoggingInterceptor logging = new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY);
 
+    //private static final String API_KEY ="3aa66a534dbe4bdea05f7a067f7a5fec";
+
     public static OkHttpClient client = new OkHttpClient.Builder()
             .addInterceptor(logging)
             .build();
 
     public static Retrofit retrofit = new Retrofit.Builder()
-            .baseUrl("https://newsapi.org/v1/")
+            .baseUrl("https://newsapi.org/v2/")
             .addConverterFactory(GsonConverterFactory.create())
             .client(client)
             .build();
