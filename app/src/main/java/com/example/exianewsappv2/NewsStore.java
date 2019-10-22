@@ -1,20 +1,20 @@
 package com.example.exianewsappv2;
 
-import com.example.exianewsappv2.model.NewsModel;
+import com.example.exianewsappv2.model.ArticlesItem;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class NewsStore {
-    private static List<NewsModel> newsModels = new ArrayList<>();
+    private static List<ArticlesItem> newsModels = new ArrayList<>();
 
 
-    public static List<NewsModel> getNewsModels() {
+    public static List<ArticlesItem> getNewsModels() {
         return newsModels;
     }
 
-    public static void setNewsModels(List<NewsModel> newsModels) {
+    public static void setNewsModels(List<ArticlesItem> newsModels) {
         NewsStore.newsModels = newsModels;
     }
-    
+
 }
